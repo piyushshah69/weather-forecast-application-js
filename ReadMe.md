@@ -11,7 +11,7 @@ In this weather forecast application there are two options to search for weather
 
 ### Dependencies
 
-* Npm
+* NPM
 * Tailwindcss
 * Weatherapi KEY
 
