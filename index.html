@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./src/css/output.css" rel="stylesheet">
+</head>
+
+<body class="bg-blue-50">
+    <header class="bg-blue-600 text-center p-3">
+        <span id="logo" class="text-2xl text-white">
+            Weather App
+        </span>
+    </header>
+    <section id="search" class="
+            mt-6 
+            flex 
+            flex-col 
+            md:gap-3 
+            justify-center
+            px-3 
+            md:flex-row">
+        <form autocomplete="off" id="form" class="
+            flex
+            justify-center
+            gap-3">
+            <input type="text" value="Mumbai" list="history" id="cityName" placeholder="City Name" class="
+            capitalize
+            py-2 
+            px-4 
+            border-white 
+            shadow 
+            outline-none
+            w-[70%]
+            md:min-w-[300px]">
+            <datalist id="history">
+            </datalist>
+            <button id="searchBtn" type="submit" class="
+            bg-blue-600 
+            py-2 
+            px-4 
+            text-white
+            w-[30%]">Search</button>
+        </form>
+        <p class="
+        md:hidden text-center text-gray-700">Or</p>
+        <button id="locationBtn" class="bg-gray-700 text-white py-2 px-4">Use Current Location</button>
+    </section>
+    <section id="currentDisplay"
+    class="
+    flex
+    flex-col
+    mt-4
+    mx-3
+    bg-blue-500
+    text-white
+    p-4
+    gap-4
+    md:max-w-[700px]
+    md:mx-auto
+    rounded-md
+    ">
+        <div class="
+        flex
+        justify-between
+        items-center">
+            <h2 id="cityNameDisplay" class="capitalize text-2xl"></h2>
+            <p id="currentDate" class="text-lg"></p>
+        </div>
+        <hr>
+        <div
+        class="flex
+        justify-between
+        ">
+            <p class="
+            flex
+            flex-col
+            items-start
+            justify-between">
+                <span>
+                    <span id="currentTemperature" class="text-3xl md:text-5xl"></span>
+                    <span class="text-2xl md:text-4xl">C</span>
+                </span>
+                <span class="md:text-lg">
+                    Feels Like: <span id="currentFeelsLike"></span>
+                </span>
+                <span class="md:text-lg"  id="currentIsDay">
+                </span>
+            </p>
+                <div class="
+                            flex
+                            flex-col
+                            items-center
+                            justify-center
+                            md:gap-2">
+                    <img id="currentWeatherConditionImage" class=" sm:scale-150">
+                    <p id="currentWeatherCondition" class="hidden sm:block"></p>
+                </div>
+            <div class="
+            flex
+            flex-col
+            items-end
+            justify-between">
+                <p class="md:text-lg">Humidity: <span class="font-bold" id="currentHumidity"></span></p>
+                <p class="md:text-lg">Wind: <span class="font-bold" id="currentWind"></span>K/H</p>
+                <p class="md:text-lg">Gusts: <span class="font-bold" id="currentWindGusts"></span>K/H</p>
+            </div>
+        </div>
+    </section>
+
+    <h2 class="text-3xl md:text-4xl text-red-600 text-center my-8 hidden" id="errorMessage"></h2>
+
+    <h2 class="text-2xl md:text-3xl my-5 md:my-6 text-center" id="forecastHeading">5 Day Forecast</h2>
+    
+    <section class="flex justify-start md:justify-center gap-3 md:gap-5 mx-3 overflow-x-scroll md:overflow-x-auto" id="forecastContainer">  
+    </section>
+
+    <script src="./src/script.js"></script>
+</body>
+
+</html>
