@@ -43,5 +43,5 @@ content: ["./index.html"]
 
 Contributors names and contact info
 
-ex. Piyush Shah  
-ex. Piyushshah159@gmail.com
+Piyush Shah  
+Email - Piyushshah159@gmail.com
