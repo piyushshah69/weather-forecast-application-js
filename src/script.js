@@ -130,15 +130,17 @@ const addHistory = (data) => {
             if (history.length > maxNumberOfCityNames) {
                 history.pop();
             }
-            // Adds updated history to local storage
-            localStorage.setItem("history", JSON.stringify(history));
         }
         else {
             // If city already present, extracts it and add it to the most recent
             const idx = history.indexOf(data.location.name);
             const city = history.splice(idx, 1);
-            history.unshift(city);
+            history.unshift(...city);
         }
+
+        // Adds updated history to local storage
+        localStorage.setItem("history", JSON.stringify(history));
+
         // Adds city names in options using Array.map method
         history.map(city => {
             const option = document.createElement("option");
