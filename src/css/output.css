@@ -773,6 +773,12 @@ video {
           user-select: none;
 }
 
+.appearance-none {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+
 .flex-col {
   flex-direction: column;
 }
@@ -1137,6 +1143,20 @@ video {
 .outline-none {
   outline: 2px solid transparent;
   outline-offset: 2px;
+}
+
+.hover\:hidden:hover {
+  display: none;
+}
+
+.hover\:appearance-none:hover {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+
+.focus\:opacity-0:focus {
+  opacity: 0;
 }
 
 @media (min-width: 640px) {

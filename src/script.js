@@ -8,10 +8,11 @@ const API_URL = "";
 const form = document.getElementById("form");
 const cityName = document.getElementById("cityName");
 const datalist = document.getElementById("history");
-const searchBtn = document.getElementById("searchBtn")
+const searchBtn = document.getElementById("searchBtn");
+const locationBtn = document.getElementById("locationBtn");
 
 // All elements of current weather display section
-const currentDisplay = document.getElementById("currentDisplay"); 
+const currentDisplay = document.getElementById("currentDisplay");
 const cityNameDisplay = document.getElementById("cityNameDisplay");
 const currentDate = document.getElementById("currentDate");
 const currentWeatherConditionImage = document.getElementById("currentWeatherConditionImage");
@@ -28,10 +29,17 @@ const errorMessage = document.getElementById("errorMessage");
 const forecastHeading = document.getElementById("forecastHeading");
 const forecastContainer = document.getElementById("forecastContainer");
 
+// Sets current search value to the last searched city
+if (localStorage.getItem("history") != null) {
+    const history = JSON.parse(localStorage.getItem("history"));
+    cityName.value = history[0];
+}else cityName.value = "Mumbai"
+
 // Function gets data as arguement & displays the current weather data
 const displayCurrent = (data) => {
     // Hiding and showing necessary elements
     currentDisplay.classList.remove("hidden");
+    currentDisplay.classList.add("flex");
     errorMessage.classList.remove("block");
     errorMessage.classList.add("hidden");
     forecastHeading.classList.remove("hidden");
@@ -80,7 +88,7 @@ const displayForecast = (data) => {
         // Styling newely creating HTML elements using Tailwindcss
         containter.classList.add("flex", "flex-col", "items-center", "bg-gray-600", "text-white", "rounded-md", "p-4", "min-w-[250px]", "md:min-w-[200px]");
         condition.classList.add("w-[50%]")
-        
+
         // Adding data in new HTML elements using 
         date.innerHTML = forecast.date;
         condition.src = forecast.day.condition.icon;
@@ -141,12 +149,13 @@ const addHistory = (data) => {
 }
 
 // Function takes city name as arguement and fetches data using API
-const fetchData = async (city) => {
+const fetchData = async (cityOrCoords) => {
     try {
+        const numberOfDays = 5;
         // Fetches data, stores in response and converts into json data
-        const response = await fetch(`${API_URL}forecast.json?q=${city}&days=5&key=${API_KEY}`);
+        const response = await fetch(`${API_URL}forecast.json?q=${cityOrCoords}&days=${numberOfDays}&key=${API_KEY}`);
         const data = await response.json();
-        console.log(data);
+        // console.log(data);
         // Calls all necessary functions if data is available
         if (data.current) {
             displayCurrent(data);
@@ -157,11 +166,11 @@ const fetchData = async (city) => {
         if (data.error) throw new Error(data.error.code);
     } catch (error) {
         // Handles errors
-        console.log(error);
         currentDisplay.classList.add("hidden");
         errorMessage.classList.remove("hidden");
         errorMessage.classList.add("block");
         forecastHeading.classList.add("hidden");
+        // console.log(error);
 
         if (error.message == 1006) {
             errorMessage.innerHTML = "City Not Found!"
@@ -176,6 +185,20 @@ form.addEventListener("submit", (e) => {
     e.preventDefault();
     if (cityName.value.length < 1) return;
     fetchData(cityName.value);
+})
+
+// Handles current location button click 
+locationBtn.addEventListener("click", () => {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position) => {
+            const lat = position.coords.latitude;
+            const long = position.coords.longitude;
+            const coords = `${lat},${long}`
+            fetchData(coords);
+        });
+    } else {
+        alert("Geolocation is not supported by this browser, please try searching manually with city name.");
+    }
 })
 
 // Starts program by calling fetchData function with city name as arguement
