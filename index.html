@@ -7,8 +7,8 @@
     <link href="./src/css/output.css" rel="stylesheet">
 </head>
 
-<body class="bg-blue-50">
-    <header class="bg-blue-600 text-center p-3">
+<body class="bg-sky-50">
+    <header class="bg-sky-600 text-center p-3">
         <span id="logo" class="text-2xl text-white">
             Weather App
         </span>
@@ -37,15 +37,15 @@
             <datalist id="history">
             </datalist>
             <button id="searchBtn" type="submit" class="
-            bg-blue-600 
+            bg-sky-600 
             py-2 
             px-4 
             text-white
             w-[30%]">Search</button>
         </form>
         <p class="
-        md:hidden text-center text-gray-700">Or</p>
-        <button id="locationBtn" class="bg-gray-700 text-white py-2 px-4">Use Current Location</button>
+        md:hidden text-center text-gray-600">Or</p>
+        <button id="locationBtn" class="bg-gray-600 text-white py-2 px-4">Use Current Location</button>
     </section>
     <section id="currentDisplay"
     class="
@@ -53,7 +53,7 @@
     flex-col
     mt-4
     mx-3
-    bg-blue-500
+    bg-sky-600
     text-white
     p-4
     gap-4
@@ -111,7 +111,7 @@
 
     <h2 class="text-3xl md:text-4xl text-red-600 text-center my-8 hidden" id="errorMessage"></h2>
 
-    <h2 class="text-2xl md:text-3xl my-5 md:my-6 text-center" id="forecastHeading">5 Day Forecast</h2>
+    <h2 class="text-2xl md:text-3xl my-5 md:my-6 text-center text-gray-600" id="forecastHeading">5 Day Forecast</h2>
     
     <section class="flex justify-start md:justify-center gap-3 md:gap-5 mx-3 overflow-x-scroll md:overflow-x-auto" id="forecastContainer">  
     </section>

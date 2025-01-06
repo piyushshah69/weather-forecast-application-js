@@ -78,7 +78,7 @@ const displayForecast = (data) => {
         const wind = document.createElement("p");
 
         // Styling newely creating HTML elements using Tailwindcss
-        containter.classList.add("flex", "flex-col", "items-center", "bg-gray-700", "text-white", "rounded-md", "p-4", "min-w-[250px]", "md:min-w-[200px]");
+        containter.classList.add("flex", "flex-col", "items-center", "bg-gray-600", "text-white", "rounded-md", "p-4", "min-w-[250px]", "md:min-w-[200px]");
         condition.classList.add("w-[50%]")
         
         // Adding data in new HTML elements using 
